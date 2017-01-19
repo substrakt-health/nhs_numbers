@@ -14,15 +14,22 @@ module NHSNumbers
 
     private
 
-    def validate_checking_digit
+    def without_checking_digit
+      @nhs_number.scan(/\d/).take(9)
+    end
+
+    def checking_digit
       sum = 0
-      @nhs_number.scan(/\d/).tap(&:pop).each_with_index do |digit, idx|
+      without_checking_digit.each_with_index do |digit, idx|
         position = idx + 1
         sum += (digit.to_i * (11 - position))
       end
-      checking_digit = 11 - (sum % 11)
+      11 - (sum % 11)
+    end
 
-      errors.add(:base, 'checking digit is incorrect') if checking_digit.to_s != @nhs_number.chars[-1]
+    def validate_checking_digit
+      message = "checking digit is incorrect (should be #{checking_digit})"
+      errors.add(:base, message) unless @nhs_number.chars[-1].to_i.eql?(checking_digit)
     end
 
     def normalize_nhs_number(nhs_number)
