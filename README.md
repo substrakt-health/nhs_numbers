@@ -26,3 +26,8 @@ validator.valid?
 ```
 
 ### Generation (todo)
+
+
+### Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md)
