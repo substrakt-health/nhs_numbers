@@ -35,3 +35,7 @@ validator.valid?
 ### Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+### Licence
+
+This code is distributed and licensed under the terms in [LICENCE.md](LICENCE.md).
