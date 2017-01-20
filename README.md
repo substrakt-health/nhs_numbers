@@ -27,6 +27,10 @@ validator.valid?
 
 ### Generation (todo)
 
+### TODO
+- [ ] Create class to generate valid and invalid NHS numbers
+- [ ] Include a native Rails validator to validate Rails models
+
 
 ### Contributing
 
