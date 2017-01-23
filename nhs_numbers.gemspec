@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'nhs_numbers'
-  s.version     = '0.2.0'
+  s.version     = '0.2.1'
   s.date        = '2010-04-28'
   s.summary     = 'Utility library to generating and validating NHS numbers'
   s.description = 'A utility library to generate and validate UK NHS numbers.'
