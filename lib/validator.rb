@@ -13,6 +13,10 @@ module NHSNumbers
       @nhs_number = normalize_nhs_number(nhs_number)
     end
 
+    def base_number
+      @nhs_number.gsub(' ', '')[0..-2].to_i
+    end
+
     private
 
     def without_checking_digit
@@ -29,8 +33,13 @@ module NHSNumbers
     end
 
     def validate_within_range
-      message_too_low = 'is below minimum allowed NHS number.'
-      errors.add(:base, message_too_low) if @nhs_number.gsub(' ', '')[0..-2].to_i < 400_000_000
+      message = 'is not in the valid range.'
+      valid_ranges = [[400_000_000, 499_000_000], [600_000_000, 708_800_001]]
+      is_valid = false
+      valid_ranges.each do |range|
+        is_valid = true if base_number.between?(range[0], range[1])
+      end
+      errors.add(:base, message) unless is_valid
     end
 
     def validate_checking_digit

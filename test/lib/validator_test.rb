@@ -8,7 +8,13 @@ class ValidatorTest < Minitest::Test
   def test_number_is_invalid_if_the_first_9_digits_less_than_400000000
     @validator = NHSNumbers::Validator.new(3999999993)
     @validator.valid?
-    assert @validator.errors.messages[:base].include? 'is below minimum allowed NHS number.'
+    assert @validator.errors.messages[:base].include? 'is not in the valid range.'
+  end
+
+  def test_number_is_invalid_if_the_first_9_digits_greater_than_499999999
+    @validator = NHSNumbers::Validator.new(500000000)
+    @validator.valid?
+    assert @validator.errors.messages[:base].include? 'is not in the valid range.'
   end
 
   def test_validator_is_of_correct_type
@@ -39,7 +45,7 @@ class ValidatorTest < Minitest::Test
     assert_equal '701 689 3294', @validator.nhs_number
     assert_equal true, @validator.valid?
   end
-
+  
   def test_validator_with_an_incorrect_checking_digit_should_be_invalid
     @validator = NHSNumbers::Validator.new(1_780_724_513)
     assert_equal false, @validator.valid?
