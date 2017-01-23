@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '0.2.0'
   s.date        = '2010-04-28'
   s.summary     = 'Utility library to generating and validating NHS numbers'
-  s.description = 'A simple hello world gem'
+  s.description = 'A utility library to generate and validate UK NHS numbers.'
   s.authors     = ['Substrakt Health']
   s.email       = 'heath@substrakt.com'
   s.license     = 'GNU GPLv3'
