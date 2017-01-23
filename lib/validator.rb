@@ -6,6 +6,7 @@ module NHSNumbers
 
     attr_accessor :nhs_number
     validates_format_of :nhs_number, with: /\A(\d{3}\s?\d{3}\s?\d{4})\z/
+    validate :validate_within_range
     validate :validate_checking_digit
 
     def initialize(nhs_number)
@@ -25,6 +26,11 @@ module NHSNumbers
         sum += (digit.to_i * (11 - position))
       end
       11 - (sum % 11)
+    end
+
+    def validate_within_range
+      message_too_low = 'is below minimum allowed NHS number.'
+      errors.add(:base, message_too_low) if @nhs_number.gsub(' ', '')[0..-2].to_i < 400_000_000
     end
 
     def validate_checking_digit
